@@ -192,7 +192,7 @@ public class ImageProcessingTool
             String saveAs = Base.getArgValue(args, "-saveAs", true, null);
             boolean overwrite = Base.hasArg(args, "-overwrite");
             boolean blendColorAroundVisiblePixels = Base.hasArg(args, "-blendColorAroundVisiblePixels");
-            String colorizeTransparentPixels = Base.getArgValue(args, "-colorizeTransparentPixels", false, null);
+            String colorizeTransparentPixels = Base.getArgValue(args, "-colorizeTransparentPixels", true, null);
             boolean removeTransparency = Base.hasArg(args, "-removeTransparency");
 
             File outputFile = new File(outputPath);
@@ -206,7 +206,7 @@ public class ImageProcessingTool
             System.out.println("Settings: ");
             System.out.println(" - inputPath: " + inputPath);
             System.out.println(" - outputPath: " + outputPath);
-            System.out.println(" - overrideType: " + saveAs);
+            System.out.println(" - saveAs: " + saveAs);
             System.out.println(" - overwrite: " + overwrite);
             System.out.println(" - blendColorAroundVisiblePixels: " + blendColorAroundVisiblePixels);
             System.out.println(" - colorizeTransparentPixels: " + colorizeTransparentPixels);
@@ -224,7 +224,7 @@ public class ImageProcessingTool
             }
 
             if (!Base.arrayContains(formatAvailableTypeMap.get(outputFormat), outputType)) {
-                throw new Exception("\"" + saveAs + "\" is not supported for \"" + outputFormat + "\"!");
+                throw new Exception("\"" + outputType + "\" is not supported for \"" + outputFormat + "\"!");
             }
 
             if (outputFile.exists()) {
